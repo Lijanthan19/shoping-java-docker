@@ -49,8 +49,8 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v14.17.3</nodeVersion>
-                            <npmVersion>7.19.0</npmVersion>
+                            <nodeVersion>v18.20.8</nodeVersion>
+                            <npmVersion>10.8.2</npmVersion>
                             <workingDirectory>${frontendSrcDir}</workingDirectory>
                         </configuration>
                     </execution>
