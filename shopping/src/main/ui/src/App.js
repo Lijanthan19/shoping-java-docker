@@ -74,7 +74,7 @@ class App extends PureComponent {
         return (
             <div className="application">
                 <div className="application-header">
-                    <h1>Beachshirts Application version 2</h1>
+                    <h1>Beachshirts Application version 3</h1>
                 </div>
                 <div className="clr-row applications">
                     {
