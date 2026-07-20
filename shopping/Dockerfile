@@ -5,6 +5,7 @@ WORKDIR /app
 COPY target/shopping-0.9.0-SNAPSHOT.jar app.jar
 COPY app.yaml app.yaml
 COPY applicationTags.yaml shopping/applicationTags.yaml
+COPY wfReportingConfig.yaml wfReportingConfig.yaml
 
 EXPOSE 50050
 EXPOSE 50150
