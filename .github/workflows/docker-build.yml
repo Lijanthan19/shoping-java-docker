@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout source
         uses: actions/checkout@v4
+
 
       - name: Set up Java 17
         uses: actions/setup-java@v4
@@ -20,8 +22,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+
       - name: Build application
         run: mvn clean install
+
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -29,12 +33,34 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+
       - name: Build Docker image
         run: |
           docker build \
             -t ${{ secrets.DOCKER_USERNAME }}/shopping-service:latest \
             ./shopping
 
+
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/shopping-service:latest
+
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/shopping-service:latest
+
+            docker stop shopping-service || true
+
+            docker rm shopping-service || true
+
+            docker run -d \
+              --name shopping-service \
+              -p 50050:50050 \
+              -p 50150:50150 \
+              ${{ secrets.DOCKER_USERNAME }}/shopping-service:latest
