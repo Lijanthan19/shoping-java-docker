@@ -94,13 +94,11 @@ public class StylingService extends Application<DropwizardServiceConfig> {
       shirtStyleDTOS.add(dto);
       shirtStyleDTOS.add(dto2);
       ManagedChannel printingChannel = ManagedChannelBuilder.forAddress(
-          configuration.getPrintingHost(), configuration.getPrintingPort()).
-          intercept(clientInterceptor).
+    	  configuration.getPrintingHost(), configuration.getPrintingPort()).
           usePlaintext().build();
       ManagedChannel packagingChannel = ManagedChannelBuilder.forAddress(
-          configuration.getPackagingHost(), configuration.getPackagingPort()).
-          intercept(clientInterceptor).
-          usePlaintext().build();
+    	  configuration.getPackagingHost(), configuration.getPackagingPort()).
+    	  usePlaintext().build();
       printing = PrintingGrpc.newBlockingStub(printingChannel);
       packaging = PackagingGrpc.newBlockingStub(packagingChannel);
 

@@ -9,9 +9,8 @@ server:
 printingPort: 50052
 packagingPort: 50053
 
-printingHost: "localhost"
-packagingHost: "localhost"
-
+printingHost: "127.0.0.1"
+packagingHost: "127.0.0.1"
 
 applicationTagsYamlFile: "./styling/applicationTags.yaml"
 wfReportingConfigYamlFile: "./wfReportingConfig.yaml"

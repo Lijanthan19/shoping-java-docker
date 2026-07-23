@@ -1,6 +1,6 @@
 reportingMechanism: direct
-server: replace-with-wavefront-server-url
-token: replace-with-wavefront-token
+server: ""
+token: ""
 reportTraces: true
 
 # Template of Reporting via Wavefront Proxy
